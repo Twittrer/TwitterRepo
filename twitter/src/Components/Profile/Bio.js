@@ -45,6 +45,7 @@ class Bio extends Component {
               id="newBio"
               placeholder="write the new bio"
             ></input>
+            </div><div>
             <input
               type="button"
               onClick={this.changeBio}

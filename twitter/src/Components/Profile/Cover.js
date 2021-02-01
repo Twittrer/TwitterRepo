@@ -44,6 +44,7 @@ class Cover extends Component {
               id="newCover"
               placeholder="enter the URL for the new image"
             ></input>
+            </div><div>
             <input
               type="button"
               onClick={this.changeCover}

@@ -46,6 +46,7 @@ class Avatar extends Component {
               id="newAvatar"
               placeholder="enter the URL for the new image"
             ></input>
+            </div><div>
             <input
               type="button"
               onClick={this.changeAvatar}
