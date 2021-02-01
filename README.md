@@ -51,4 +51,4 @@
 ## Teams
 - [Hamdallah](https://github.com/Hamdalla2) 
 - [Hiba](https://github.com/hibtmimi) 
-- [Shaima](https://github.com/shaima96)[Scrum master] 
+- [Shaima](https://github.com/shaima96)  
