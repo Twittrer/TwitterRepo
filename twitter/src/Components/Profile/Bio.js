@@ -39,6 +39,7 @@ class Bio extends Component {
           <Sidebar />
 
           <div id="Bio">
+            <p>Change your  profile</p>
             <input
               type="text"
               id="newBio"
@@ -47,6 +48,7 @@ class Bio extends Component {
             <input
               type="button"
               onClick={this.changeBio}
+              placeholder='Update the about me text section'
               value="Update the about me text section"
             ></input>
           </div>

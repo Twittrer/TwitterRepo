@@ -26,7 +26,7 @@ class Feed extends React.Component {
       method: "POST",
       body: role,
     };
-    fetch("https://cors-anywhere.herokuapp.com/https://twittrer.herokuapp.com/email", option)
+    fetch("https://twittrer.herokuapp.com/email", option)
       .then((response) => response.json())
       .then((result) => {
         this.props.details(result.data);

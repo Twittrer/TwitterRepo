@@ -119,7 +119,7 @@ class Post extends React.Component {
                 style={{ cursor: "pointer" }}
               >
                 <h3>
-                  {this.props.username} . {this.props.time} . {this.props.date}
+                  {this.props.username}  |  {this.props.time}  |  {this.props.date}
                 </h3>
               </div>
               <div className="post__headerDescription">

@@ -3,6 +3,7 @@
     /* max-width: 1300px; */
     margin-left: auto;
     margin-right: auto;
+    
 }
 .bookmark__header {
     position: sticky;
@@ -13,6 +14,7 @@
     padding: 5px 5px;
     font-size: 20px;
     font-weight: 800;
+    width:50vw;
    
   }
 .center{
