@@ -7,12 +7,14 @@ import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import PublishIcon from "@material-ui/icons/Publish";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
+import { details, tweets } from "../../redux/actions";
 
 class Post extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       redirect: false,
+      comment: false,
     };
   }
 
@@ -95,11 +97,13 @@ class Post extends React.Component {
       });
   };
   comment = (x) => {
-    console.log("not ready");
+    this.setState({comment:true})
   };
 
   render() {
-    if (this.state.redirect) {
+    if (this.state.comment) {
+      return <Comment id={this.props.id} comments={this.props.comments.reverse()}/>
+    } else if (this.state.redirect) {
       return <Redirect to="/profile" />;
     } else {
       return (
@@ -202,7 +206,14 @@ const mapStateToProps = (state) => {
   };
 };
 const mapDispatchToProps = (dispatch) => {
-  return {};
+  return {
+    details: (x) => {
+      dispatch(details(x));
+    },
+    tweets: (x) => {
+      dispatch(tweets(x));
+    },
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Post);

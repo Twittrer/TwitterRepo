@@ -26,7 +26,6 @@ class Avatar extends Component {
       .then((response) => response.text())
       .then((result) => {
         this.setState({ redirect: true });
-        this.setState({});
       })
       .catch((err) => console.error(err));
   };

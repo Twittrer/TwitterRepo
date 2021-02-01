@@ -1,0 +1,160 @@
+.profile {
+    flex: 0.3;
+    border-right: 1px solid #e6ecf0;;
+    width: 700px;
+    /* width: 70%; */
+    overflow-y:visible;
+    min-width: 50vw;
+  }
+
+  /* 
+   .profile::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .profile {
+    -ms-overflow-style: none; 
+    scrollbar-width: none; /
+  } */
+  
+  .img {
+      width: 678px;
+      height: 250px;
+      padding-left: 0px;
+      padding-right: 0px;
+  }
+
+  
+.profile__header {
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 90;
+    border: 1px solid #e6ecf0;;
+    padding: 1px 20px;
+  }
+
+  .profile__header > h2 {
+    font-size: 23px;
+    font-weight: 800;
+  }
+  .profile__header > h5 {
+    font-size: 12px;
+    font-weight: 500;
+    color : rgb(91,112,162)
+  }
+
+  
+  .profile__info {
+    padding: 20px;
+    display: flex;
+  }
+
+  .username {
+margin-top: 10px;
+color : rgb(181,190,199)
+}
+
+  .profile__img {
+      border-radius: 100%;
+      width: 150px;
+      height: 150px;
+      border : 5px solid white;
+      margin-top: -100px;
+      margin-right: 49%;
+      margin-left: 1%;
+
+  }
+
+
+
+  .profile__followButton {
+    background-color: white !important;
+    border:  solid  #50b7f5 !important;
+    color:  #50b7f5 !important;
+    font-weight: 1000 !important;
+    text-transform: inherit !important;
+    border-radius: 30px !important;
+    width: 120px;
+    height: 40px !important;
+    margin-top: -200px !important;
+    margin-left: 550px !important;
+  
+  }
+
+  .bio {
+    margin-top: 20px;
+    /* margin-left: 10px; */
+    font-weight: 400;
+  }
+
+  .followers {
+    display: inline;
+    font-weight: 400;
+
+  }
+
+  #h3 {
+      margin-left: 70px;
+      
+  }
+
+  .number{
+    font-weight: 700; 
+  }
+
+
+  /* post section  */
+
+  .profile__post__body {
+    /* flex: 5; */
+    padding: 10px;
+  }
+  
+  .profile__post__body > img {
+    border-radius: 20px;
+    width: 600px;
+    height: 300px;
+  }
+  
+  .profile__post__footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  .profile__post__headerDescription {
+    margin-bottom: 10px;
+    font-size: 17px;
+  }
+  
+  .profile__post__headerText > h3 {
+    font-size: 20px;
+    margin-bottom: 5px;
+  }
+  
+  .profile__post__badge {
+    font-size: 14px !important;
+    color:  #50b7f5;
+  }
+  
+  .profile__post__headerSpecial {
+    font-weight: 600;
+    font-size: 15px;
+    color: gray;
+  }
+  
+  .profile__post__avatar {
+    padding: 20px;
+    /* border-radius: 100%; */
+    /* width:50px;
+    height:50px; */
+  }
+
+  .edit {
+    display: flex;
+    /* max-width: 1300px; */
+    margin-left: auto;
+    margin-right: auto;
+    min-width: 50vw;
+}

@@ -73,7 +73,7 @@ def signup():
         existing_user = users.find_one({'email' : request.form['email']})
         if existing_user is None:
             hashpass = bcrypt.hashpw(request.form['password'].encode('utf-8'), bcrypt.gensalt())
-            users.insert({'username' : request.form['username'], 'password' : hashpass, 'email' : request.form['email'], 'avatar': 'https://merriam-webster.com/assets/mw/images/article/art-wap-article-main/egg-3442-e1f6463624338504cd021bf23aef8441@1x.jpg', 'cover': 'https://coverfiles.alphacoders.com/114/114371.jpg', 'phone': '', 'dob' : request.form['dob'], 'following': 0, 'followers': 0, 'bio': 'Thank you for visiting my profile', 'saves': [], 'retweets': [], 'likes': []})
+            users.insert({'username' : request.form['username'], 'password' : hashpass, 'email' : request.form['email'], 'avatar': 'https://merriam-webster.com/assets/mw/images/article/art-wap-article-main/egg-3442-e1f6463624338504cd021bf23aef8441@1x.jpg', 'cover': 'https://coverfiles.alphacoders.com/114/114371.jpg', 'phone': '', 'dob' : request.form['dob'], 'following': [], 'followers': [], 'bio': 'Thank you for visiting my profile', 'saves': [], 'retweets': [], 'likes': []})
             return {'data' : 'created'}
         return 'Username taken!'
     return render_template('signup.html')
@@ -226,9 +226,9 @@ def unsave():
 def follow():
         users = db.db.users
         user = users.find_one({'email' : request.form['email']})
-        users.update_one({'email' : request.form['email']},{"$set":{"following": user['following']+1}})
         user2 = users.find_one({'username' : request.form['username']})
-        users.update_one({'username' : request.form['username']},{"$set":{"followers": user['followers']+1}})
+        users.update_one({'email' : request.form['email']},{"$push":{"following": user2}})
+        users.update_one({'username' : request.form['username']},{"$push":{"followers": user}})
         return "ok"
         
 @app.route('/unfollow', methods=['POST'])
@@ -236,9 +236,9 @@ def follow():
 def unfollow():
         users = db.db.users
         user = users.find_one({'email' : request.form['email']})
-        users.update_one({'email' : request.form['email']},{"$set":{"following": user['following']-1}})
         user2 = users.find_one({'username' : request.form['username']})
-        users.update_one({'username' : request.form['username']},{"$set":{"followers": user['followers']-1}})
+        users.update_one({'email' : request.form['email']},{"$pull":{"following": user2}})
+        users.update_one({'username' : request.form['username']},{"$pull":{"followers": user}})
         return "ok"
 
 @app.route('/comment', methods=['POST'])
@@ -248,7 +248,7 @@ def comment():
         post = posts.find_one({'_id' : ObjectId(request.form['id'])})
         users = db.db.users
         user = users.find_one({'email' : request.form['email']})
-        posts.update_one({'_id' : ObjectId(request.form['id'])},{"$push": {'replies': {'comment':request.form['comment'],'avatar': user['avatar'], 'email' : request.form['email'],'username' : user['username'], 'time': datetime.datetime.now().strftime("%X"), 'date': datetime.datetime.now().strftime("%x")}}})
+        posts.update_one({'_id' : ObjectId(request.form['id'])},{"$push": {'comments': {'comment':request.form['comment'],'avatar': user['avatar'], 'email' : request.form['email'],'username' : user['username'], 'time': datetime.datetime.now().strftime("%X"), 'date': datetime.datetime.now().strftime("%x")}}})
         return "ok"
 
 @app.route('/uncomment', methods=['POST'])
@@ -258,7 +258,7 @@ def uncomment():
         post = posts.find_one({'_id' : ObjectId(request.form['id'])})
         users = db.db.users
         user = users.find_one({'email' : request.form['email']})
-        posts.update_one({'_id' : ObjectId(request.form['id'])},{"$pull": {'replies': {'username' : user['username'], 'time': request.form['time'], 'date': request.form['date']}}})
+        posts.update_one({'_id' : ObjectId(request.form['id'])},{"$pull": {'comments': {'username' : user['username'], 'time': request.form['time'], 'date': request.form['date']}}})
         return "ok"
 
 @app.route('/avatar', methods=['POST'])
