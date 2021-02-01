@@ -22,7 +22,7 @@ class Bookmarks extends React.Component {
           </div>
           <div>
           {this.props.details2.saves?.length>0?
-          this.props.details2.saves.map((post, i) => {
+          this.props.details2.saves.reverse().map((post, i) => {
             return (
               <Post
                 key={i}
