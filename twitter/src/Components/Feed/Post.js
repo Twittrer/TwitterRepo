@@ -1,5 +1,6 @@
 import React from "react";
 import "./Post.css";
+import Comment from "./Comment.js";
 import { Avatar } from "@material-ui/core";
 import ChatBubbleOutlineIcon from "@material-ui/icons/ChatBubbleOutline";
 import RepeatIcon from "@material-ui/icons/Repeat";

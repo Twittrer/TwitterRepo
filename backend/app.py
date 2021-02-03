@@ -99,6 +99,10 @@ def email():
             x['_id'] = str(x['_id'])
         for x in existing_user['retweets']:
             x['_id'] = str(x['_id'])
+        for x in existing_user['following']:
+            x['_id'] = str(x['_id'])
+        for x in existing_user['followers']:
+            x['_id'] = str(x['_id'])
         return {"data":existing_user }
 
 @app.route('/user', methods=['POST'])
@@ -116,6 +120,10 @@ def user():
             x['_id'] = str(x['_id'])
         for x in existing_user['retweets']:
             x['_id'] = str(x['_id'])
+        for x in existing_user['following']:
+            x['_id'] = str(x['_id'])
+        for x in existing_user['followers']:
+            x['_id'] = str(x['_id'])
         return {"data":existing_user }
 
 @app.route('/tweet', methods=['POST'])
@@ -129,6 +137,8 @@ def tweet():
         s=[]
         for tweet in posts.find({'email' : request.form['email']}):
             tweet['_id'] = str(tweet['_id'])
+            for x in tweet['comments']:
+                x['_id'] = str(x['_id'])
             s.append(tweet)
         return {"data":s}
 
@@ -145,6 +155,10 @@ def users():
                 x['_id'] = str(x['_id'])
             for x in user['retweets']:
                 x['_id'] = str(x['_id'])
+            for x in user['following']:
+                x['_id'] = str(x['_id'])
+            for x in user['followers']:
+                x['_id'] = str(x['_id'])
             s.append(user)
         return {"data":s}
 
@@ -160,6 +174,8 @@ def tweets():
         s=[]
         for post in db.db.posts.find():
             post['_id'] = str(post['_id'])
+            for x in post['comments']:
+                x['_id'] = str(x['_id'])
             s.append(post)
         return {"data":s}
 
@@ -227,8 +243,8 @@ def follow():
         users = db.db.users
         user = users.find_one({'email' : request.form['email']})
         user2 = users.find_one({'username' : request.form['username']})
-        users.update_one({'email' : request.form['email']},{"$push":{"following": user2}})
-        users.update_one({'username' : request.form['username']},{"$push":{"followers": user}})
+        users.update_one({'email' : request.form['email']},{"$push":{"following": user2['_id']}})
+        users.update_one({'username' : request.form['username']},{"$push":{"followers": user['_id']}})
         return "ok"
         
 @app.route('/unfollow', methods=['POST'])
@@ -237,8 +253,8 @@ def unfollow():
         users = db.db.users
         user = users.find_one({'email' : request.form['email']})
         user2 = users.find_one({'username' : request.form['username']})
-        users.update_one({'email' : request.form['email']},{"$pull":{"following": user2}})
-        users.update_one({'username' : request.form['username']},{"$pull":{"followers": user}})
+        users.update_one({'email' : request.form['email']},{"$pull":{"following": user2['_id']}})
+        users.update_one({'username' : request.form['username']},{"$pull":{"followers": user['_id']}})
         return "ok"
 
 @app.route('/comment', methods=['POST'])

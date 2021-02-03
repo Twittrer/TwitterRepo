@@ -4,10 +4,17 @@ import SearchIcon from "@material-ui/icons/Search";
 import { TwitterTimelineEmbed, TwitterShareButton, TwitterTweetEmbed} from 'react-twitter-embed';
 import { connect } from "react-redux";
 import { details, tweets } from "../../redux/actions";
+import {Redirect} from 'react-router-dom'
 
 class Widgets extends React.Component {
+  constructor(props){
+    super(props)
+    this.state={
+      redirect:false
+    }
+  }
   search=()=>{
-    visit = (e) => {
+    
       var role = new FormData();
       role.append("username", document.getElementById('search').value);
       const option = {
@@ -42,7 +49,7 @@ class Widgets extends React.Component {
         })
         .catch((err) => console.error(err));
     };
-  }
+  
 render(){
   if (this.state.redirect) {
     return <Redirect to="/profile" />;
