@@ -7,8 +7,8 @@ import { Redirect } from "react-router-dom";
 class Avatar extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      redirect: false,
+    this.state = { 
+      redirect:false
     };
   }
   changeAvatar = () => {
