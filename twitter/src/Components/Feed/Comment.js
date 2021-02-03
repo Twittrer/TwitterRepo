@@ -1,26 +1,28 @@
 import React, { Component } from "react";
 import Sidebar from "../Sidebar/Sidebar";
-import "./Profile.css";
+import "./Comment.css";
 import Widgets from "../Widgets/Widgets";
 import { Redirect } from "react-router-dom";
+import { Avatar } from "@material-ui/core";
 
-class Bio extends Component {
+class Comment extends Component {
   constructor(props) {
     super(props);
     this.state = {
       redirect: false,
     };
   }
-  changeBio = () => {
+  changeComment = () => {
     var role = new FormData();
     role.append("email", localStorage.getItem("email"));
-    role.append("bio", document.getElementById("newBio").value);
+    role.append("comment", document.getElementById("newComment").value);
+    role.append("id", this.props.id);
     const option = {
       method: "POST",
       body: role,
     };
     fetch(
-      "https://cors-anywhere.herokuapp.com/https://twittrer.herokuapp.com/bio",
+      "https://cors-anywhere.herokuapp.com/https://twittrer.herokuapp.com/comment",
       option
     )
       .then((response) => response.text())
@@ -38,21 +40,29 @@ class Bio extends Component {
         <div className="edit">
           <Sidebar />
 
-          <div id="Bio">
-            <p>Change your  profile</p>
+          <div id="Comment">
             <input
               type="text"
-              id="newBio"
-              placeholder="write the new bio"
+              id="newComment"
+              placeholder="enter the URL for the new image"
             ></input>
-            </div><div>
             <input
               type="button"
-              onClick={this.changeBio}
-              placeholder='Update the about me text section'
-              value="Update the about me text section"
+              onClick={this.changeComment}
+              value="Update Comment Image"
             ></input>
           </div>
+          {this.props.comments.map((comment,i)=>{
+            return(
+              <div 
+              key={i} 
+              className="comment">
+                <div><Avatar src={comment.avatar}/> {comment.username} | {comment.time} | {comment.date}</div>
+                <div>{comment.comment}</div>
+              </div>
+            )
+          }
+          )}
           <Widgets />
         </div>
       );
@@ -60,4 +70,4 @@ class Bio extends Component {
   }
 }
 
-export default Bio;
+export default Comment;

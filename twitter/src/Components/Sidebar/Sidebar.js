@@ -16,6 +16,12 @@ import { connect } from "react-redux";
 import { details, tweets } from "../../redux/actions";
 
 class Sidebar extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { 
+     
+    };
+  }
   signout = () => {
     localStorage.removeItem("email");
     this.setState({});

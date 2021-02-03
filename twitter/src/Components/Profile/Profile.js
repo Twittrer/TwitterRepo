@@ -152,19 +152,19 @@ class Profile extends Component {
             ? this.props.tweets2.concat(this.props.details2.retweets).map((post, i) => {
               return (
                 <Post
-                  key={i}
-                  id={post._id}
-                  post={post}
-                  username={post.username}
-                  email={post.email}
-                  text={post.tweet}
-                  avatar={post.avatar}
-                  img={post.img}
-                  comments={post.comments}
-                  likes={post.likes}
-                  retweets={post.retweets}
-                  date={post.date}
-                  time={post.time}
+                key={i}
+                id={post._id}
+                post={post}
+                username={post.username}
+                email={post.email}
+                text={post.tweet}
+                avatar={post.avatar}
+                img={post.img}
+                likes={post.likes}
+                comments={post.comments}
+                retweets={post.retweets}
+                date={post.date}
+                time={post.time}
                 />
               );
             })

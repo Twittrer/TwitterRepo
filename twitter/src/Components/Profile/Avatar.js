@@ -7,8 +7,8 @@ import { Redirect } from "react-router-dom";
 class Avatar extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      redirect: false,
+    this.state = { 
+      redirect:false
     };
   }
   changeAvatar = () => {
@@ -26,7 +26,6 @@ class Avatar extends Component {
       .then((response) => response.text())
       .then((result) => {
         this.setState({ redirect: true });
-        this.setState({});
       })
       .catch((err) => console.error(err));
   };
@@ -47,6 +46,7 @@ class Avatar extends Component {
               id="newAvatar"
               placeholder="enter the URL for the new image"
             ></input>
+            </div><div>
             <input
               type="button"
               onClick={this.changeAvatar}
